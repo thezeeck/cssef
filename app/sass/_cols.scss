@@ -1,0 +1,23 @@
+$columns: 10 16 24;
+
+@mixin colSys($col, $sys) {
+  .css-m-#{$col}-#{$sys} {
+    float: left;
+    letter-spacing: normal;
+    min-height: 1px;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-rendering: auto;
+    vertical-align: top;
+    width: percentage(1 / $col);
+    word-spacing: normal;
+  }
+}
+
+@each $sys in $columns {
+
+  @for $i from 1 through $sys {
+    @include colSys($i, $sys);
+  }
+}
