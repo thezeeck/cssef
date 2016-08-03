@@ -1,7 +1,8 @@
-$columns: 10 16 24;
+$columns: 10 12;
+$devices: m t d;
 
-@mixin colSys($col, $sys) {
-  .css-m-#{$col}-#{$sys} {
+@mixin colSys($col, $sys, $device) {
+  .css-#{$device}-#{$col}-#{$sys} {
     float: left;
     letter-spacing: normal;
     min-height: 1px;
@@ -10,14 +11,34 @@ $columns: 10 16 24;
     position: relative;
     text-rendering: auto;
     vertical-align: top;
-    width: percentage(1 / $col);
+    width: percentage(1 * ( $col / $sys ));
     word-spacing: normal;
+  }
+
+  @media (min-width: 768px) {
+
+    @if ($device == t or $device == d) {
+      .css-#{$device}-#{$col}-#{$sys} {
+        width:100%;
+      }
+    }
+  }
+
+  @media (min-width: 990px) {
+
+    @if ($device == t or $device == d) {
+      .css-#{$device}-#{$col}-#{$sys} {
+        width:100%;
+      }
+    }
   }
 }
 
 @each $sys in $columns {
 
-  @for $i from 1 through $sys {
-    @include colSys($i, $sys);
+  @each $device in $devices {
+    @for $i from 1 through $sys {
+      @include colSys($i, $sys, $device);
+    }
   }
 }
