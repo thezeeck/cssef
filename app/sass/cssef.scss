@@ -1,2 +1,8 @@
-@import "normalize";
-@import "cols";
+// Normalize
+@import "vendor/normalize";
+
+// Grid system
+@import "modules/cols";
+
+// Custom Styles
+@import "custom-styles";

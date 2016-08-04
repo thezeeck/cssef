@@ -2,6 +2,7 @@ $columns: 10 12;
 $devices: m t d;
 
 @mixin colSys($col, $sys, $device) {
+
   .css-#{$device}-#{$col}-#{$sys} {
     float: left;
     letter-spacing: normal;
@@ -11,24 +12,30 @@ $devices: m t d;
     position: relative;
     text-rendering: auto;
     vertical-align: top;
-    width: percentage(1 * ( $col / $sys ));
     word-spacing: normal;
   }
 
-  @media (min-width: 768px) {
-
-    @if ($device == t or $device == d) {
-      .css-#{$device}-#{$col}-#{$sys} {
-        width:100%;
-      }
+  @if ($device == m) {
+    .css-#{$device}-#{$col}-#{$sys} {
+      width: percentage(1 * ( $col / $sys ));
     }
-  }
+  } @else {
+    .css-#{$device}-#{$col}-#{$sys} {
+      width:100%;
+    }
 
-  @media (min-width: 990px) {
+    @if ($device == t) {
 
-    @if ($device == t or $device == d) {
-      .css-#{$device}-#{$col}-#{$sys} {
-        width:100%;
+      @media (min-width: 768px) {
+        .css-#{$device}-#{$col}-#{$sys} {
+          width: percentage(1 * ( $col / $sys ));
+        }
+      }
+    } @else {
+      @media (min-width: 990px) {
+        .css-#{$device}-#{$col}-#{$sys} {
+          width: percentage(1 * ( $col / $sys ));
+        }
       }
     }
   }

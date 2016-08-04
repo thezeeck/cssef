@@ -1,0 +1,11 @@
+-var devices = ['m', 't', 'd']
+-var grid = [10, 12]
+h1 Sistema de columnas
+
+#grid-visible.row
+  each sys in grid
+    each device in devices
+      .row
+        - for (var i = 1; i <= sys; ++i) {
+          div(class="css-" + device + "-" + i + "-" + sys)= "css-" + device + "-" + i + "-" + sys
+        - }
